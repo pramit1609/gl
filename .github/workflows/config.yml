@@ -34,4 +34,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+      - name: Build and push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v4
+        with:
+          image: pramit16/img2
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
 
