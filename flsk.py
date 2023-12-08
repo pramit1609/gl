@@ -1,12 +1,13 @@
+# Import necessary libraries
 from flask import Flask, request, Response
 from joblib import load
 import numpy as np
-
+# Load the pre-trained Logistic Regression model
 my_lr_mod = load("Model/irispred.joblib")
 # Initializing
 app = Flask(__name__)
 
-
+# Endpoint for handling predictions
 @app.route("/predictions", methods=['POST', 'GET'])
 def predictions():
     data = request.json
@@ -19,6 +20,6 @@ def predictions():
     # returning the response
     return Response(str(model_prediction))
 
-
+# Main script execution
 if __name__ == '__main__':
     app.run(debug=True)
